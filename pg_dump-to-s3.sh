@@ -14,6 +14,7 @@ dbs=("$@")
 
 # Vars
 NOW=$(date +"%m-%d-%Y-at-%H-%M-%S")
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 for db in "${dbs[@]}"; do
     # Dump database
@@ -31,4 +32,5 @@ done
 
 # Delere old files
 echo "* Delete old backups";
-./s3-autodelete.sh $S3_PATH "7 days"
+$DIR/s3-autodelete.sh $S3_PATH "7 days"
+
