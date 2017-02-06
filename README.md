@@ -4,12 +4,18 @@ Automatically dump and archive PostgreSQL backups to Amazon S3
 ## Requirements
 
  - [AWS cli](https://aws.amazon.com/cli)
-  
+
+ - pip install awscli
+
+
 ## Setup
 
-Edit pg_to_s3.sh and replace:
+Add secrets.conf:
   - PG_HOST and PG_USER with your PostgreSQL hosts and backup user.
+  - PG_DB with pg connection string
   - S3_PATH with your Amazon S3 bucket and path
+  - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY with your aws credentials
+  - MAX_DAYS number of days before backups deleted
 
 ## Usage
 

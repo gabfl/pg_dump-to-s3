@@ -6,7 +6,7 @@
 set -e
 
 # Maximum date (will delete all files older than this date)
-maxDate=`date +%s --date="-$2"`
+maxDate=`[ "$(uname)" = Linux ] && date +%s --date="-$2"`
 
 # Loop thru files
 aws s3 ls s3://$1/ | while read -r line;  do
