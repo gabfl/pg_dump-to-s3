@@ -15,7 +15,7 @@ for db in "${dbs[@]}"; do
     FILENAME="$PREFIX"_"$NOW"_"$db"    
 
     # Dump database
-    pg_dump --dbname=$PG_DB > /tmp/"$FILENAME".dump
+    pg_dump $PG_DB/$db --format=c  > /tmp/"$FILENAME".dump
 
     # Copy to S3
     AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY aws s3 cp /tmp/"$FILENAME".dump s3://$S3_PATH/"$FILENAME".dump --storage-class STANDARD_IA
