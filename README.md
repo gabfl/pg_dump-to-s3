@@ -3,9 +3,7 @@ Automatically dump and archive PostgreSQL backups to Amazon S3
 
 ## Requirements
 
- - [AWS cli](https://aws.amazon.com/cli)
-
- - pip install awscli
+ - [AWS cli](https://aws.amazon.com/cli): ```pip install awscli```
 
 
 ## Setup
