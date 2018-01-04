@@ -13,7 +13,7 @@ S3_PATH="bucket/folder/sub_folder"
 dbs=("$@")
 
 # Vars
-NOW=$(date +"%m-%d-%Y-at-%H-%M-%S")
+NOW=$(date +"%Y-%m-%d-at-%H-%M-%S")
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 for db in "${dbs[@]}"; do
