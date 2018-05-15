@@ -30,3 +30,7 @@ AWS credentials should be stored in a file called `~/.aws`. A documentation is a
 ### PostgreSQL password
 
 The PostgreSQL password can be stored in a file called `~/.pgpass`, see: https://www.postgresql.org/docs/current/static/libpq-pgpass.html
+
+
+### Restore:
+pg_restore -d DB_NAME -Fc --clean PATH_TO_YOUR_DB_DUMP_FILE
