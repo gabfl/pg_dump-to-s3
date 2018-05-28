@@ -17,6 +17,16 @@ Automatically dump and archive PostgreSQL backups to Amazon S3.
 
 ```bash
 ./pg_to_s3.sh
+#  * Backup in progress.,.
+#    -> backing up my_database_1...
+#       ...database my_database_1 has been backed up
+#    -> backing up my_database_2...
+#       ...database my_database_2 has been backed up
+#  * Deleting old backups...
+#    -> Deleting 2018-05-24-at-03-10-01_my_database_1.dump
+#    -> Deleting 2018-05-24-at-03-10-01_my_database_2.dump
+#
+# ...done!
 ```
 
 ## Restore a backup
