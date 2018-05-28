@@ -1,5 +1,6 @@
 # pg_dump-to-s3
-Automatically dump and archive PostgreSQL backups to Amazon S3
+
+Automatically dump and archive PostgreSQL backups to Amazon S3.
 
 ## Requirements
 
@@ -8,29 +9,18 @@ Automatically dump and archive PostgreSQL backups to Amazon S3
 
 ## Setup
 
-Add secrets.conf:
-  - PG_HOST and PG_USER with your PostgreSQL hosts and backup user.
-  - PG_DB with pg connection string
-  - S3_PATH with your Amazon S3 bucket and path
-  - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY with your aws credentials
-  - MAX_DAYS number of days before backups deleted
+ - Use `aws configure` to store your AWS credentials in `~/.aws` ([read documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration))
+ - Edit `pg_dump-to-s3.conf` to set your PostgreSQL's credentials and the list of databases to back up
+ - If your PostgreSQL connection uses a password, you will need to store it in `~/.pgpass` ([read documentation](https://www.postgresql.org/docs/current/static/libpq-pgpass.html))
 
 ## Usage
 
+```bash
+./pg_to_s3.sh
 ```
-./pg_to_s3.sh database1 database2 database3 [...]
-```
 
-## Credentials
+## Restore a backup
 
-### AWS credentials
-
-AWS credentials should be stored in a file called `~/.aws`. A documentation is available here: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
-
-### PostgreSQL password
-
-The PostgreSQL password can be stored in a file called `~/.pgpass`, see: https://www.postgresql.org/docs/current/static/libpq-pgpass.html
-
-
-### Restore:
+```bash
 pg_restore -d DB_NAME -Fc --clean PATH_TO_YOUR_DB_DUMP_FILE
+```

@@ -1,4 +1,2 @@
-
-secrets\.conf
-
-backup.log
+# Mac
+.DS_Store
