@@ -12,11 +12,13 @@
 
 set -e
 
+# Set current directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Import config file
 source $DIR/pg_dump-to-s3.conf
 
 # Vars
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 NOW=$(date +"%Y-%m-%d-at-%H-%M-%S")
 maxDate=`[ "$(uname)" = Linux ] && date +%s --date="-$DELETE_AFTER"` # Maximum date (will delete all files older than this date)
 
