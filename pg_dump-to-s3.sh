@@ -30,7 +30,7 @@ echo " * Backup in progress.,.";
 
 # Loop thru databases
 for db in "${DBS[@]}"; do
-    FILENAME="$PREFIX"_"$NOW"_"$db"
+    FILENAME="$NOW"_"$db"
 
 
     echo "   -> backing up $db..."
