@@ -25,7 +25,7 @@ DELETETION_TIMESTAMP=`[ "$(uname)" = Linux ] && date +%s --date="-$DELETE_AFTER"
 # Split databases
 IFS=',' read -ra DBS <<< "$PG_DATABASES"
 
-# Delere old files
+# Delete old files
 echo " * Backup in progress.,.";
 
 # Loop thru databases
