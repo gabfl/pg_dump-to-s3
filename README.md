@@ -29,5 +29,11 @@ Automatically dump and archive PostgreSQL backups to Amazon S3.
 ## Restore a backup
 
 ```bash
-pg_restore -d DB_NAME -Fc --clean PATH_TO_YOUR_DB_DUMP_FILE
+# USAGE: pg_restore-from-s3.sh [db target] [s3 object]
+
+./pg_restore-from-s3.sh my_database_1 2023-06-28-at-10-29-44_my_database_1.dump
+
+# download: s3://your_bucket/folder/2023-06-28-at-22-17-15_my_database_1.dump to /tmp/2023-06-28-at-22-17-15_my_database_1.dump
+# Database my_database_1 already exists, skipping creation
+# 2023-06-28-at-22-17-15_my_database_1.dump restored to database my_database_1
 ```
