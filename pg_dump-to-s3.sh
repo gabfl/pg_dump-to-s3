@@ -16,7 +16,7 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Import config file
-source $DIR/pg_dump-to-s3.conf
+source $DIR/.conf
 
 # Vars
 NOW=$(date +"%Y-%m-%d-at-%H-%M-%S")
