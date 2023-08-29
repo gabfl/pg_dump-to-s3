@@ -6,7 +6,11 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Import config file
-source $DIR/.conf
+if [ -f "${HOME}/.pg_dump-to-s3.conf" ]; then
+    source ${HOME}/.pg_dump-to-s3.conf
+else
+    source $DIR/.conf
+fi
 
 # Usage
 __usage="
