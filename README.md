@@ -9,7 +9,7 @@ Automatically dump and archive PostgreSQL backups to Amazon S3.
 ## Setup
 
  - Use `aws configure` to store your AWS credentials in `~/.aws` ([read documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration))
- - Edit `.conf` and set your PostgreSQL's credentials and the list of databases to back up
+ - Edit `.conf` and set your PostgreSQL's credentials and the list of databases to back up. Optionally, the file can be moved to the home directory in `~/.pg_dump-to-s3.conf`.
  - If your PostgreSQL connection uses a password, you will need to store it in `~/.pgpass` ([read documentation](https://www.postgresql.org/docs/current/static/libpq-pgpass.html))
 
 ## Usage
