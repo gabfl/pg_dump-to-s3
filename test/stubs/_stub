@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Generic command stub used by the test suite.
+# Logs each invocation to $STUB_LOG and emulates the bits of behavior the
+# scripts rely on. Behavior can be tuned with environment variables:
+#   STUB_FAIL           command name that should exit non-zero
+#   STUB_S3_LS          file whose content is returned by `aws s3 ls`
+#   STUB_DB_EXISTS      if "1", psql reports the database as existing
+#   STUB_PSQL_STDIN     file where psql's stdin is saved
+
+name="$(basename "$0")"
+{
+    printf '%s' "$name"
+    printf ' [%s]' "$@"
+    printf '\n'
+} >> "$STUB_LOG"
+
+if [ "${STUB_FAIL:-}" = "$name" ]; then
+    echo "$name: simulated failure" >&2
+    exit 1
+fi
+
+case "$name" in
+    pg_dump)
+        echo "fake dump of ${*: -1}"
+        ;;
+    aws)
+        if [ "$1 $2" = "s3 ls" ]; then
+            [ -n "${STUB_S3_LS:-}" ] && cat "$STUB_S3_LS"
+        elif [ "$1 $2" = "s3 cp" ] && [[ "$3" == s3://* ]]; then
+            # Download: create the destination file
+            echo "fake dump" > "$4"
+        elif [ "$1 $2" = "s3 cp" ]; then
+            # Upload: the local file must exist
+            [ -f "$3" ] || { echo "missing $3" >&2; exit 1; }
+        fi
+        ;;
+    psql)
+        cat > "${STUB_PSQL_STDIN:-/dev/null}"
+        [ "${STUB_DB_EXISTS:-}" = "1" ] && echo 1
+        ;;
+esac
+exit 0
